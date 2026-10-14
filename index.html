@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Housr Area Explorer</title>
+  <meta name="description" content="See what's near a student house: unis, supermarkets, gyms, transport, pubs and cafés, with walking times.">
+  <link rel="icon" href="assets/housr-icon-green.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Housr Area Explorer home">
+      <img src="assets/housr-logo-white.svg" alt="Housr" class="brand-logo">
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span class="brand-title">Area Explorer</span>
+    </a>
+    <form id="search-form" class="search" autocomplete="off">
+      <label for="postcode" class="visually-hidden">UK postcode</label>
+      <input id="postcode" name="postcode" type="text" placeholder="Enter a UK postcode, e.g. NG7 2RD" required>
+      <button type="submit">Explore</button>
+    </form>
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <section class="panel-section">
+        <label for="property-select" class="label">Or pick a property</label>
+        <select id="property-select">
+          <option value="">Choose an example property…</option>
+        </select>
+      </section>
+
+      <section class="panel-section" id="location-section" hidden>
+        <p class="location-name" id="location-name"></p>
+        <p class="location-sub" id="location-sub"></p>
+        <button type="button" class="link-button" id="copy-link">🔗 Copy shareable link</button>
+      </section>
+
+      <section class="panel-section score-card" id="score-section" hidden>
+        <div class="score-ring">
+          <span id="score-value">–</span><small>/10</small>
+        </div>
+        <div>
+          <p class="score-title">Student area score</p>
+          <ul class="score-highlights" id="score-highlights"></ul>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <p class="label">Show on map</p>
+        <div class="chips" id="chips"></div>
+      </section>
+
+      <section class="panel-section results" id="results">
+        <div class="empty-state">
+          <img src="assets/housr-icon-green.svg" alt="" width="48" height="48">
+          <p><strong>Find your next student home's neighbourhood.</strong></p>
+          <p>Search a postcode or pick a property to see what's within walking distance.</p>
+        </div>
+      </section>
+
+      <footer class="panel-footer">
+        Walking times are approximate. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.
+        A Housr side project.
+      </footer>
+    </aside>
+
+    <div class="map-wrap">
+      <div id="map" aria-label="Map of the area"></div>
+      <div class="map-status" id="map-status" hidden></div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
